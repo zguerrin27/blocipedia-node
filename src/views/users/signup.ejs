@@ -14,31 +14,40 @@
     <% include ../static/partials/messages.ejs %>
 
     <div class="row">
+
       <div class="col-md-8 col-lg-12">
+
         <form method="POST" action="/users">
+
           <div class="form-group">
             <label>Username:</label>
             <input type="text" name="username" placeholder="Enter Username" class="form-control"/>
-            <small class="text-muted" id="titleHelp">Username must be 6 or more characters in length.</small>
+            <small class="text-muted" id="titleHelp">Must be 6 or more characters.</small>
           </div>
+
           <div class="form-group">
             <label>Email:</label>
             <input type="email" name="email" placeholder="Enter Email" class="form-control"/>
             <small class="text-muted" id="titleHelp">Must be a valid email.</small>
           </div>
+
           <div class="form-group">
             <label>Password:</label>
             <input type="password" name="password" placeholder="Enter Password" class="form-control"/>
             <small class="text-muted" id="titleHelp">Must be a valid password.</small>
           </div>
+
           <div class="form-group">
             <label>Password:</label>
             <input type="password" name="password_conf" placeholder="Enter Password confirmation" class="form-control"/>
-            <small class="text-muted" id="titleHelp">Confirm password.</small>
+            <small class="text-muted" id="titleHelp">Confirm.</small>
           </div><br/>
           <input type="submit" value="Sign Up" class="btn btn-primary"/>
+
         </form>
+
       </div>
+      
     </div>
 
   </main>
