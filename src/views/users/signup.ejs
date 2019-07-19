@@ -15,11 +15,11 @@
 
     <div class="row">
       <div class="col-md-8 col-lg-12">
-        <form method="POST" action="/user/signup">
+        <form method="POST" action="/users">
           <div class="form-group">
-            <label>Name:</label>
-            <input type="text" name="name" placeholder="Enter Name" class="form-control"/>
-            <small class="text-muted" id="titleHelp">Name must be 2 or more characters in length.</small>
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter Username" class="form-control"/>
+            <small class="text-muted" id="titleHelp">Username must be 6 or more characters in length.</small>
           </div>
           <div class="form-group">
             <label>Email:</label>
@@ -34,6 +34,7 @@
           <div class="form-group">
             <label>Password:</label>
             <input type="password" name="password_conf" placeholder="Enter Password confirmation" class="form-control"/>
+            <small class="text-muted" id="titleHelp">Confirm password.</small>
           </div><br/>
           <input type="submit" value="Sign Up" class="btn btn-primary"/>
         </form>
