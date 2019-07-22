@@ -10,11 +10,13 @@ module.exports = {
       },
       username: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: false
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: { msg: "must be a valid email" }
         }

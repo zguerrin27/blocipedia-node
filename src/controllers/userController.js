@@ -10,12 +10,22 @@ module.exports = {
     res.render("users/signup");
   },
   create(req, res, next){
+
+    console.log(req.body.password)
+    console.log(req.body.passwordConfirmation)
+
+    if(req.body.password !== req.body.passwordConfirmation){
+      req.flash("error");
+      res.redirect("/users/signup");
+    }
+
     let newUser = {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
       passwordConfirmation: req.body.passwordConfirmation
     };
+
     userQueries.createUser(newUser, (err, user) => {
       if(err){
         req.flash("error", err);
@@ -36,6 +46,7 @@ module.exports = {
       // sgMail.send(msg)
       } 
     }); 
+
   } 
 
 } 
