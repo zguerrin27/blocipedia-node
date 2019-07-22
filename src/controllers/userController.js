@@ -11,9 +11,6 @@ module.exports = {
   },
   create(req, res, next){
 
-    console.log(req.body.password)
-    console.log(req.body.passwordConfirmation)
-
     if(req.body.password !== req.body.passwordConfirmation){
       req.flash("error");
       res.redirect("/users/signup");
