@@ -28,16 +28,14 @@ module.exports = {
 
         const msg = {
           to: newUser.email,
-          from: 'BigZ@Blocipedia.com',
+          from: 'AdminZ@Blocipedia.com',
           subject: 'Blocipedia Account Created!',
           text: 'Thank you for signing up with Blocipedia! Enjoy.',
-          html: '<strong>Welcome to Blocipedia! Made by Zach G</strong>',
+          html: '<strong>Welcome to Blocipedia! A place for users to share information and expand their minds. Made by Zach </strong>',
         };
-      sgMail.send(msg);
+      sgMail.send(msg)
+      } 
+    }); 
+  } 
 
-      } // else
-    }); // createUser
-
-  } // create
-
-} // mod
+} 
