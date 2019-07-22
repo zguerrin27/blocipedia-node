@@ -1,8 +1,8 @@
 const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 
-// const sgMail = require('@sendgrid/mail');
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
 
@@ -33,14 +33,15 @@ module.exports = {
           res.redirect("/");
         });
 
-      //   const msg = {
-      //     to: newUser.email,
-      //     from: 'AdminZ@Blocipedia.com',
-      //     subject: 'Blocipedia Account Created!',
-      //     text: 'Thank you for signing up with Blocipedia! Enjoy.',
-      //     html: '<strong>Welcome to Blocipedia! A place for users to share information and expand their minds. Made by Zach </strong>',
-      //   };
-      // sgMail.send(msg)
+        const msg = {
+          to: newUser.email,
+          from: 'AdminZ@Blocipedia.com',
+          subject: 'Blocipedia Account Created!',
+          text: 'Thank you for signing up with Blocipedia! Enjoy.',
+          html: '<strong>Welcome to Blocipedia! A place for users to share information and expand their minds. Made by Zach </strong>',
+        };
+
+      sgMail.send(msg)
       } 
     }); 
 
