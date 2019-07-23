@@ -9,6 +9,25 @@ module.exports = {
   signUp(req, res, next){
     res.render("users/signup");
   },
+  signInForm(req, res, next){
+    res.render("users/signin");
+  },
+  signIn(req, res, next){
+    passport.authenticate("local")(req, res, function () {
+      if(!req.user){
+        req.flash("notice", "Sign in failed. Please try again.")
+        res.redirect("/users/signin");
+      } else {
+        req.flash("notice", "You've successfully signed in!");
+        res.redirect("/");
+      }
+    })
+  },
+  signOut(req, res, next){
+    req.logout();
+    req.flash("notice", "You've successfully signed out!");
+    res.redirect("/");
+  },
   create(req, res, next){
 
     if(req.body.password !== req.body.passwordConfirmation){
