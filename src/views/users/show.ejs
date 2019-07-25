@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+
+      <% include ../static/partials/messages.ejs %>
+      <hr>
+
+      <h1><%= `${user.username}'s profile` %></h1>
+
+      <hr>
+
+      <!-- <h2> Latest Wikis</h2>
+
+      <hr> -->
+
+          <!--- Cards -->
+    <div class="container-fluid padding">
+      <div class="row padding">
+
+          <div class="col-lg-6 col-md-6 col-sm-6">  <!-- where the card begins-->
+            <div class="card">
+              <img src="/img/apartments-architecture-boston-302186.jpg" alt="img" class="card-img-top">
+              <div class="card-body">
+                <h4 class="card-title">Standard members</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Free</h6>
+                <p class="card-text">Create and edit wikis</p>
+                <p class="card-text">Only able to create public wikis</p>
+                <% if(currentUser && currentUser.role === 'premium') { %>
+                  <hr>
+                  <h4>You currently have a premium account</h4>
+                  <h5>Click Below to downgrade</h5>
+                  <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+                    <button type="submit" class="btn btn-danger">Downgrade account</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          </div>
+      
+        <div class="col-lg-6 col-md-6 col-sm-6">  <!-- where the card begins-->
+          <div class="card">
+            <img src="/img/bookcase-books-bookshelf-1166657.jpg" alt="img" class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-title">Premium members</h4>
+              <h6 class="card-subtitle mb-2 text-muted">$15.00</h6>
+              <p class="card-text">Create and edit wikis</p>
+              <p class="card-text">Create private wikis viewable only to you and collaborators</p>
+              <% if(currentUser && currentUser.role === 'standard') { %>
+                <hr>
+                <h4>You currently have a Standard Account</h4>
+                <h6>If you would like to upgrade to Premium, click below.</h6>
+                <p class="card-text">Enter 4242 4242 4242 4242 for the card number</p>
+                <p class="card-text">Enter any expiration date in the future</p>
+                <p class="card-text">Enter any 3 digit code for the  CVV</p>
+                <hr>
+                <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+                  <script
+                      src="https://checkout.stripe.com/checkout.js"
+                      class="stripe-button"
+                      data-amount="1500"
+                      data-key="pk_test_VKShsvmkXQkpnEHr9yzhi9CD00JEWIGrZ0"
+                      data-name="Blocpedia"
+                      data-description="Blocipedia Premium Account"
+                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                      data-locale="auto"
+                  ></script>
+              </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      
+      
+      </div>
+    </div>
+
+    
+    
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>

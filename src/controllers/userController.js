@@ -4,6 +4,9 @@ const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const stripe = require('stripe')(process.env.stripeKey);
+const stripePublishKey = process.env.publishStripeKey;
+
 module.exports = {
 
   signUp(req, res, next){
@@ -15,7 +18,7 @@ module.exports = {
   signIn(req, res, next){
     passport.authenticate("local")(req, res, function () {
       if(!req.user){
-        req.flash("notice", "Sign in failed. Please try again.")
+        req.flash("notice", "Login failed, please try again.");
         res.redirect("/users/signin");
       } else {
         req.flash("notice", "You've successfully signed in!");
@@ -63,7 +66,50 @@ module.exports = {
       sgMail.send(msg)
       } 
     }); 
+  },
+  show(req, res, next){
+    userQueries.getUser(req.params.id, (err, result) => {
+      if(err || result.user === undefined){
+        req.flash("notice", "No user found with that ID.");
+        res.redirect("/");
+      } else {
+        res.render("users/show", {...result});
+      }
+    });
+  },
+  upgrade(req, res, next) {
 
-  } 
+    const payment = 1500;
+    stripe.customers.create({
+      email: req.body.stripeEmail,
+      source: req.body.stripeToken
+    })
+    .then(customer => {
+      return stripe.charges.create({
+        amount: payment,
+        description: "Blocipedia Premium Account",
+        currency: "usd",
+        customer: customer.id
+      });
+    })
+    .then(charge => {
+      if (charge) {
+        userQueries.upgrade(req.params.id); 
+          req.flash("notice", "You're now a premium user! Start making your private wikis.");
+          res.redirect("/users/" + req.user.id);
+      } else {
+        req.flash("notice", "Payment Unsuccessful. Please try again.");
+        res.redirect("/users/" + req.user.id);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  },
+  downgrade(req, res, next){
+    userQueries.downgrade(req.user.dataValues.id);
+    req.flash("notice", "You are no longer a premium user");
+    res.redirect("/users/" + req.user.id);
+  }
 
 } 

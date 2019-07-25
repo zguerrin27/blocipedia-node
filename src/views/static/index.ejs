@@ -17,9 +17,10 @@
           <p class="lead">An application for users to share information.</p>
           <% if(currentUser) { %>
             <a href="/wikis" class="btn btn-info btn-lg">Browse Wikis</a>
+            <a href="/users/<%= currentUser.id %>" class="btn btn-primary btn-lg">Profile</a>
             <% } else { %>
               <a href="/users/signup" class="btn btn-primary btn-lg">Sign up</a>
-              <a href="/users/signin" class="btn btn-success btn-lg">Sign in</a>
+              <a href="/users/signin" class="btn btn-success btn-lg">Login</a>
               <a href="/wikis" class="btn btn-info btn-lg">Browse Wikis</a>
             <% } %>
         </header>
