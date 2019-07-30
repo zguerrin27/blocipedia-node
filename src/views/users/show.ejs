@@ -13,7 +13,7 @@
       <hr>
 
       <h1><%= `${user.username}'s profile` %></h1>
-      <% if (currentUser.role === "admin") { %>
+      <% if ((currentUser) && currentUser.role === "admin") { %>
         <h2>Admin</h2>
         <% } %>
       <hr>
