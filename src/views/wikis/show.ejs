@@ -8,11 +8,13 @@
 
     <main class="container">
 
-        <% include ../static/partials/messages.ejs %>
+      <% include ../static/partials/messages.ejs %>
 
       <h1><%= wiki.title %></h1>
 
-      <p><%= wiki.body %></p>
+      <p><%- content %></p>
+
+      <!-- <p><%= wiki.body %></p> -->
 
       <% if(currentUser){ %>
         <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
