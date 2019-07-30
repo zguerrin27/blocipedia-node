@@ -21,6 +21,21 @@
           <label for="description">Wiki Body</label>
           <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
         </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="private" value="false" checked>
+          <label class="form-check-label" for="private">Public (default)</label>
+        </div>
+        <% if(currentUser.role === "premium" || currentUser.role === "admin"){ %>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="private" value="true">
+            <label class="form-check-label" for="private">Private</label>
+          </div>
+        <% }else{ %>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="private" value="true" disabled>
+            <label class="form-check-label" for="private">Private</label>
+          </div>
+        <% } %>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 

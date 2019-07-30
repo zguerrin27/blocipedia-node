@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     private: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
     userId: {
       type: DataTypes.INTEGER,

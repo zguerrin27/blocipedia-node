@@ -12,17 +12,33 @@
 
       <h1>Wikis</h1>
 
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
+      <% if(currentUser) { %>
+        <a href="/wikis/new" class="btn btn-success">New Wiki</a>
+      <% } %>
 
       <hr>
 
       <ul class="list-group">
-        <% wikis.forEach((wiki) => { %>
-          <li class="list-group-item">
-            <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-          </li>
-        <% }) %>
-      </ul>
+          <% wikis.forEach((wiki) => { %>
+            <% if((wiki.private || !wiki.private) && (currentUser) && currentUser.role === "premium" || (currentUser) && currentUser.role === "admin"){ %>
+              <li class="list-group-item">
+                <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+              </li>
+            <% } else if ((wiki.private) && (currentUser) && currentUser.role === "standard"){ %>
+              <li class="list-group-item">
+                  <a href="/users/<%= currentUser.id %>"> Private wiki. Please upgrade to Premium to view! </a>
+              </li>
+            <% } else if (!wiki.private){ %>
+              <li class="list-group-item">
+                <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+              </li>
+            <% } else if((wiki.private) && !currentUser) { %>
+              <li class="list-group-item">
+                  <a href="/users/signup"> Private wiki. Please create a Standard account, then upgrade to Premium to view! </a>
+              </li>
+            <% } %>
+          <% }) %>
+        </ul>
 
     </main>
     <% include ../static/partials/baseScripts.ejs %>

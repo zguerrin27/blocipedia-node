@@ -1,4 +1,5 @@
 const userQueries = require("../db/queries.users.js");
+const wikiQueries = require("../db/queries.wikis");
 const passport = require("passport");
 
 const sgMail = require('@sendgrid/mail');
@@ -78,7 +79,6 @@ module.exports = {
     });
   },
   upgrade(req, res, next) {
-
     const payment = 1500;
     stripe.customers.create({
       email: req.body.stripeEmail,
@@ -108,6 +108,7 @@ module.exports = {
   },
   downgrade(req, res, next){
     userQueries.downgrade(req.user.dataValues.id);
+    wikiQueries.makeWikisPublic(req.user.id);
     req.flash("notice", "You are no longer a premium user");
     res.redirect("/users/" + req.user.id);
   }

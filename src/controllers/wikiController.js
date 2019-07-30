@@ -28,7 +28,7 @@ module.exports = {
     let newWiki = {
       title: req.body.title,
       body: req.body.body,
-      private: false,
+      private: req.body.private,
       userId: req.user.id
     };
     wikiQueries.addWiki(newWiki, (err, wiki) => {
@@ -64,6 +64,7 @@ module.exports = {
       }
     });
     } else {
+      console.log(authorized)
       req.flash("notice", "You are not authorized to do that.")
       res.redirect(`/wikis/${req.params.id}`)
     }

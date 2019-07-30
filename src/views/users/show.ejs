@@ -13,7 +13,9 @@
       <hr>
 
       <h1><%= `${user.username}'s profile` %></h1>
-
+      <% if (currentUser.role === "admin") { %>
+        <h2>Admin</h2>
+        <% } %>
       <hr>
 
       <!-- <h2> Latest Wikis</h2>
@@ -24,25 +26,25 @@
     <div class="container-fluid padding">
       <div class="row padding">
 
-          <div class="col-lg-6 col-md-6 col-sm-6">  <!-- where the card begins-->
-            <div class="card">
-              <img src="/img/apartments-architecture-boston-302186.jpg" alt="img" class="card-img-top">
-              <div class="card-body">
-                <h4 class="card-title">Standard members</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Free</h6>
-                <p class="card-text">Create and edit wikis</p>
-                <p class="card-text">Only able to create public wikis</p>
-                <% if(currentUser && currentUser.role === 'premium') { %>
-                  <hr>
-                  <h4>You currently have a premium account</h4>
-                  <h5>Click Below to downgrade</h5>
-                  <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-                    <button type="submit" class="btn btn-danger">Downgrade account</button>
-                  </form>
-                <% } %>
-              </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">  <!-- where the card begins-->
+          <div class="card">
+            <img src="/img/apartments-architecture-boston-302186.jpg" alt="img" class="card-img-top">
+            <div class="card-body">
+              <h4 class="card-title">Standard members</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Free</h6>
+              <p class="card-text">Create and edit wikis</p>
+              <p class="card-text">Only able to create public wikis</p>
+              <% if(currentUser && currentUser.role === 'premium') { %>
+                <hr>
+                <h4>You currently have a premium account</h4>
+                <h5>Click Below to downgrade</h5>
+                <form action="/users/<%=currentUser.id%>/downgrade" method="POST" onsubmit="return confirm('ATTENTION: Are you sure you want to downgrade?  All of your private wikis will become public =[ !! ');">
+                  <button type="submit" class="btn btn-danger">Downgrade account</button>
+                </form>
+              <% } %>
             </div>
           </div>
+        </div>
       
         <div class="col-lg-6 col-md-6 col-sm-6">  <!-- where the card begins-->
           <div class="card">
