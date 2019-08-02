@@ -50,7 +50,7 @@ module.exports = {
       if(err || wiki == null){
         res.redirect(404, "/");
       } else {
-        let content = markdown.toHTML(wiki.body);
+        let content = markdown.toHTML(wiki.body);    // changing .body into markdown then passing into wikis/show view along with the wiki
         res.render("wikis/show", {wiki, content});
       }
     });
@@ -74,6 +74,7 @@ module.exports = {
   edit(req, res, next){
     wikiQueries.getWiki(req.params.id, (err, wiki) => {
       if(err || wiki == null){
+        console.log(err)
         res.redirect(404, "/");
       } else {
         const authorized = new Authorizer(req.user, wiki).edit();
