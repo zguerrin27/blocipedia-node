@@ -38,6 +38,20 @@
         <% } %>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
+
+      <br>
+     
+      <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")){ %>
+        <form action="/wikis/<%= wiki.id %>/collaborator/add" method="post">
+          <div class="input-group">
+            <input type="text" class="form-control" name="collaborator" placeholder="Enter email for additional collaborator">
+            <button type="submit" class="btn btn-primary">Add collaborator</button>
+          </div>
+        </form>
+      <% } %>
+
+     
+
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
