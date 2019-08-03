@@ -9,7 +9,7 @@ module.exports = {
     if(authorized){
       collabQueries.addCollaborator(req, (err, collaborator) => {
         if(err){
-          console.log("FROM ADD ON COLLAB CONTROLLER")
+          console.log("FROM ADD ON COLLAB CONTROLLER*****************************************************")
           console.log(err)
           req.flash("error", err);
         }
