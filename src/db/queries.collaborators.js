@@ -5,9 +5,11 @@ const Collaborator = require('./models').Collaborator;
 
 module.exports = {
 
+
   addCollaborator(req, callback){
-    if (req.user.name === req.body.collaborator){
-      return callback("You're the owner - you can't be a collaborator!");
+    // console.log(req.user)
+    if (req.user.email === req.body.collaborator){
+      return callback("You can't collaborate on your own Wiki!");
     }
     User.findAll({
       where: {

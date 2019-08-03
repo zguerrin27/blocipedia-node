@@ -3,6 +3,7 @@ const Authorizer = require("../policies/wiki");
 const markdown = require("markdown").markdown;
 
 
+
 module.exports = {
 
   index(req, res, next){
@@ -51,7 +52,7 @@ module.exports = {
         res.redirect(404, "/");
       } else {
         let content = markdown.toHTML(wiki.body);
-        res.render("wikis/show", {wiki, content});
+        res.render("wikis/show", {wiki, content});  //, collaborator
       }
     });
   },
@@ -75,10 +76,14 @@ module.exports = {
     wikiQueries.getWiki(req.params.id, (err, wiki) => {
       if(err || wiki == null){
         res.redirect(404, "/");
+        console.log("ERROR FROM WIKI CONTROLLER")
+        console.log(err)
       } else {
         const authorized = new Authorizer(req.user, wiki).edit();
         if(authorized){
-        res.render("wikis/edit", {wiki});
+          console.log("WIKI-CONTROLLER")
+          console.log(wiki.collaborators)
+        res.render("wikis/edit", {wiki});   //, collaborator
       } else {
         req.flash("notice", "You are not authorized to do that.")
         res.redirect(`/wikis/${req.params.id}`)
