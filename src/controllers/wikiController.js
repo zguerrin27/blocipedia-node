@@ -66,7 +66,7 @@ module.exports = {
       }
     });
     } else {
-      console.log(authorized)
+      // console.log(authorized)
       req.flash("notice", "You are not authorized to do that.")
       res.redirect(`/wikis/${req.params.id}`)
     }

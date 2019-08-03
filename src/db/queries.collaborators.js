@@ -2,8 +2,8 @@ const User = require('./models').User;
 const Wiki = require('./models').Wiki;
 const Collaborator = require('./models').Collaborator;
 
-
-const Authorizer = require("../policies/application");
+// const Authorizer = require("../policies/application");
+const Authorizer = require("../policies/collaborator");
 
 module.exports = {
 
@@ -52,18 +52,33 @@ module.exports = {
   },
 
   remove(req, callback){
-    // current collaborator and wiki
-    const collaborator = req.body.collaborator;
-    let wikiId = req.params.wikiId;
+    // const collaborator = req.body.collaborator;
+    // let wikiId = req.body.wikiId;
+    
+    // return Collaborator.destroy({ where: {
+    //   userId : collaborator,
+    //   wikiId : wikiId
+    // }})
+    // .then((deletedRecordsCount) => {
+    //   callback(null, deletedRecordsCount);
+    // })
+    // .catch((err) => {
+    //   callback(err);
+    // });
 
-    // check auth to destroy collaborator (premium, owner, admin)
-    const authorized = new Authorizer(req.user, wiki, collaborator).destroy();
+ 
+    const collaborator = req.body.collaborator;
+    // let wikiId = req.wikiId;
+    const authorized = new Authorizer(req.user).destroy();    //, wiki, collaborator
+
+// console.log(req)
+// console.log(wikiId)
+// console.log("BREAKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK")
 
     if(authorized){
-      Collaborator.destroy({ where: {
-        userId : collaborator,
-        wikiId : wikiId
-      }})
+      Collaborator.destroy({
+        where: {collaborator}
+      })
       .then((deletedRecordsCount) => {
         callback(null, deletedRecordsCount);
       })
@@ -74,6 +89,8 @@ module.exports = {
       req.flash("notice", "You are not authorized to do that.")
       callback(401);
     }
+
+
   }
 
 }

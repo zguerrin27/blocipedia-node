@@ -1,6 +1,8 @@
 const collabQueries = require("../db/queries.collaborators.js");
 const wikiQueries = require("../db/queries.wikis.js");
+
 const Authorizer = require("../policies/collaborator");
+// const Authorizer = require("../policies/application");
 
 module.exports = {
 
@@ -13,8 +15,8 @@ module.exports = {
       });
     } else {
       req.flash("notice", "You must be signed in to do that");
+      res.redirect(req.headers.referer);
     }
-    res.redirect(req.headers.referer);
   },
   update(req, res, next){
     wikiQueries.getWiki(req.params.wikiId, (err, wiki) => {
@@ -31,16 +33,38 @@ module.exports = {
     })
   },
   destroy(req, res, next){
-    if(req.user){
+    const authorized = new Authorizer(req.user).destroy();
+    if(authorized){
+      console.log("THIS IS FROM THE COLLLAB CONTROLLER")
+      console.log(req)
       collabQueries.remove(req, (err, collaborator) => {
         if(err){
           req.flash("error", err);
+          res.redirect(req.headers.referer)
         }
-        res.redirect(req.headers.referer);
-      });
+      })
     } else {
       req.flash("notice", "You must be signed in to do that.");
       res.redirect(req.headers.referer);
     }
+
+
+
+
+    // if(req.user){
+    //   console.log("req.body from controller")
+    //   console.log(req.body)
+    //   collabQueries.remove(req, (err, collaborator) => {
+    //     if(err){
+    //       req.flash("error", err);
+    //     }
+    //     res.redirect(req.headers.referer);
+    //   });
+    // } else {
+    //   req.flash("notice", "You must be signed in to do that.");
+    //   res.redirect(req.headers.referer);
+    // }
+
+
   }
 }

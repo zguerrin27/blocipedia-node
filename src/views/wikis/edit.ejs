@@ -39,8 +39,45 @@
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
 
+      
 
-      <% include ../collaborators/collaborate.ejs %>
+      <br>
+
+
+      <% if(wiki.collaborators){ %>
+        
+        <ul class="list-group">
+        <% wiki.collaborators.forEach(collaborator => {  %>
+          
+          <li class="list-group-item">
+            <h3>userId for collaborator</h3>
+            <br>
+        
+            <h6><% collaborator.userId %></h6>
+            <br>
+            
+            <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+              <form action="/wikis/<%= wiki.id %>/collaborators/destroy" method="post">
+                <button type="submit" class="btn btn-danger">Remove</button>
+                <input type="hidden" value="<%= collaborator.userId %>" class="form-control" name="collaborator">
+              </form>
+            <% } %>
+          </li>
+        <% }) %>
+        </ul>
+
+      <% } %>
+      
+      <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")){ %>
+        <form action="/wikis/<%= wiki.id %>/collaborators/add" method="post">
+          <div class="input-group">
+            <input type="text" class="form-control" name="collaborator" placeholder="Enter email for additional collaborator">
+            <button type="submit" class="btn btn-primary">Add collaborator</button>
+          </div>
+        </form>
+      <% } %>
+
+
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
