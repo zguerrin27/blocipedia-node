@@ -49,7 +49,28 @@ module.exports = {
     .catch((err)=>{
       callback(err, null);
     })
+  },
+
+
+  remove(req, callback){
+    // current collaborator and wiki
+    const collaborator = req.body.collaborator;
+    // console.log("FROM THEEE COLLAB REMOVE QUERY")
+    let wikiId = req.params.wikiId;
+
+    Collaborator.destroy({ where: {
+      userId : collaborator,
+      wikiId : wikiId
+    }})
+    .then((deletedRecordsCount) => {
+      callback(null, deletedRecordsCount);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+    
   }
+
 
 
 }

@@ -41,7 +41,7 @@
 
       <br>
      
-      <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")){ %>
+      <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin" && wiki.private === true)){ %>
         <form action="/wikis/<%= wiki.id %>/collaborator/add" method="post">
           <div class="input-group">
             <input type="text" class="form-control" name="collaborator" placeholder="Enter email for additional collaborator">
@@ -51,23 +51,21 @@
       <% } %>
 
       <br>
-      
-      <% console.log("EDIT.EJS****") %>
-      <% console.log(wiki.collaborator) %>
+     
 
       <% if(wiki.collaborators){ %>
         
         <ul class="list-group">
         <% wiki.collaborators.forEach(collaborator => {  %>
           <li class="list-group-item">
-              <% console.log(collaborator) %>
-              <h4>TEST from forEach</h4>
+            
+              <h4>Collaborator ID:</h4>
             <%= collaborator.id %>
 
             <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
               <form action="/wikis/<%= wiki.id %>/collaborator/destroy" method="post">
                 <button type="submit" class="btn btn-danger">Remove</button>
-                <input type="hidden" value="<%= collaborator.id %>" class="form-control" name="collaborator">
+                <input type="hidden" value="<%= collaborator.userId %>" class="form-control" name="collaborator">
               </form>
             <% } %>
           </li>

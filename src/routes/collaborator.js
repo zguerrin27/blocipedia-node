@@ -4,7 +4,7 @@ const collaboratorController = require("../controllers/collaboratorController");
 const validation = require("./validation");
 
 router.post("/wikis/:wikiId/collaborator/add", collaboratorController.add);
-// router.post("/wikis/:wikiId/collaborator/destroy", collaboratorController.destroy);
+router.post("/wikis/:wikiId/collaborator/destroy", collaboratorController.destroy);
 
 
 module.exports = router;
