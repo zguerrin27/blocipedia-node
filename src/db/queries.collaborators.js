@@ -26,7 +26,7 @@ module.exports = {
           wikiId: req.params.wikiId,
         }
       })
-      .then((collaborators)=>{
+      .then((collaborators) => {
         if(collaborators.length > 0){
           return callback('That user is already a collaborator.');
         }

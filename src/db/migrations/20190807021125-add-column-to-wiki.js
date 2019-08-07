@@ -6,12 +6,7 @@ module.exports = {
       "Wikis",
       "collaboratorId",
       {
-        type: Sequelize.INTEGER,
-        references:  {
-          model: "Collaborators",
-          key: "userId",
-          as: "collaboratorId"
-        }
+        type: Sequelize.INTEGER
       }
     );
   },
