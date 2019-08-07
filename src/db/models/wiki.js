@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    collaboratorId: {
+      type: DataTypes.INTEGER
     }
   }, {});
   Wiki.associate = function(models) {
@@ -30,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "wikiId",
       as: "collaborators"
     });
+
+     // Wiki.belongsTo(models.Collaborator, {
+    //   foreignKey: "collaboratorId",
+    //   onDelete: "CASCADE"
+    // });
 
   };
   return Wiki;

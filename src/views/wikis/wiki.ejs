@@ -25,7 +25,7 @@
                 <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
               </li>
             <% } else if ((wiki.private) && (currentUser) && currentUser.role === "standard"){ %>
-              <!-- <% console.log(wiki) %> -->
+             
               <!-- <li class="list-group-item">
                   <a href="/users/<%= currentUser.id %>"> Private wiki. Please upgrade to Premium to view! </a>
               </li> -->
