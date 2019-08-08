@@ -35,10 +35,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
 
-    Wiki.belongsToMany(models.User, {              // <--- what I just added 
-      as: "collaborators",
-      through: "Collaborators"
-    });
+    // Wiki.belongsToMany(models.User, {              // <--- what I just added 
+    //   as: "collaborators",
+    //   through: "Collaborators"
+    // });
 
      // Wiki.belongsTo(models.Collaborator, {
     //   foreignKey: "collaboratorId",

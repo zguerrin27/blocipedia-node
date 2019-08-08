@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+
+    <% include ../static/partials/messages.ejs %>
+
+      <h1>Private Wikis that you are collaborating on.</h1>
+
+      <hr>
+
+      <ul class="list-group">
+          <% wikis.forEach((wiki) => { %>
+          
+            <%  if ((wiki.private) && (currentUser) && currentUser.role === "standard"){ %>
+              <% console.log(wiki) %>
+              
+              <li class="list-group-item">
+                  <a href="/users/<%= currentUser.id %>"> Private wiki. Please upgrade to Premium to view! </a>
+              </li>
+            <% } %>
+          <% }) %>
+        </ul>
+
+    </main>
+    <% include ../static/partials/baseScripts.ejs %>
+  </body>
+</html>
