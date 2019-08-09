@@ -111,6 +111,17 @@ module.exports = {
     wikiQueries.makeWikisPublic(req.user.id);
     req.flash("notice", "You are no longer a premium user");
     res.redirect("/users/" + req.user.id);
+  },
+  showCollaborator(req, res, next){
+    userQueries.getUser(req.user.id, (err, result) => {
+      user = result["user"];
+      collaborator = result["collaborator"];    // building the result from the query using the scope added in the model
+      if(err || user == null){
+        res.redirect(404, "/");
+      } else {
+        res.render("users/collaborators", {collaborator} );
+      }
+    });
   }
 
 } 

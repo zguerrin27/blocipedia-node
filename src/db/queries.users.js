@@ -1,5 +1,6 @@
 const User = require("./models").User;
 const bcrypt = require("bcryptjs");
+const Collaborator = require('./models').Collaborator;
 
 module.exports = {
 
@@ -27,12 +28,16 @@ module.exports = {
         callback(404);
       } else {
         result["user"] = user;
+        Collaborator.scope({method: ["collaboratorFor", id]}).findAll()   //this was key in getting the collabs to work...
+       .then((collaborator) => {
+         result["collaborator"] = collaborator;       
         callback(null, result);
-      }
-    })
-    .catch((err) => {
-      callback(err);
-    })
+      })
+      .catch((err) => {
+        callback(err);
+      })
+     }
+   })
   },
   upgrade(id){                   // role in db
     return User.findById(id)
@@ -60,5 +65,22 @@ module.exports = {
       console.log(err);
     })
   }
+  // ,
+  // findAllCollab(id){
+  //   return Wiki.findAll()
+  //   .then((wikis) => {
+  //     console.log(wiki)
+  //     wikis.forEach((wiki) => {
+  //       // if(wiki.userId === id && wiki.private === true){
+  //       //   wiki.update({
+  //       //     private: false
+  //       //   })
+  //       // }
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
 
 }

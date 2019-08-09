@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     // });
 
 
-  };
+ 
 
   Collaborator.addScope('collaboratorsFor', (wikiId) => {
     return {
@@ -55,6 +55,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+    Collaborator.addScope('collaboratorFor', (userId) => {
+      return {
+        include: [{
+          model: models.Wiki
+        }],
+        where: { userId: userId},
+        order: [['createdAt', 'ASC']]
+      }
+  });
+
+};
 
   return Collaborator;
 };

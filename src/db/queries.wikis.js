@@ -77,19 +77,19 @@ module.exports = {
       console.log(err);
     })
   },
-  getAllPrivateWikis(callback){
-    return Wiki.findAll({
-      where: {
-        private: true
-      }
-    })
-    .then((wikis) => {
-      callback(null, wikis);
-    })
-    .catch((err) => {
-      callback(err);
-    })
-  }
+  // getAllPrivateWikis(callback){
+  //   return Wiki.findAll({
+  //     where: {
+  //       private: true
+  //     }
+  //   })
+  //   .then((wikis) => {
+  //     callback(null, wikis);
+  //   })
+  //   .catch((err) => {
+  //     callback(err);
+  //   })
+  // }
   
 
 }

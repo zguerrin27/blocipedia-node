@@ -94,15 +94,16 @@ module.exports = {
         res.redirect(`/wikis/${wiki.id}`);
       }
     });
-  },
-  private(req, res, next){
-    wikiQueries.getAllPrivateWikis((err, wikis) => {
-      if(err){
-        res.redirect(500, "static/index");
-      } else {
-        res.render("wikis/private", {wikis});
-      }
-    })
   }
+  //,
+  // private(req, res, next){
+  //   wikiQueries.getAllPrivateWikis((err, wikis) => {
+  //     if(err){
+  //       res.redirect(500, "static/index");
+  //     } else {
+  //       res.render("wikis/private", {wikis});
+  //     }
+  //   })
+  // }
 
 }

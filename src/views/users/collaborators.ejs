@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+
+      <% include ../static/partials/messages.ejs %>
+
+        <h1>Collaborator</h1>
+        
+
+        <% if(collaborator.length > 0) { %>
+          <ul class ="list-group">
+            <% collaborator.forEach((collaborators) => {  %>
+                <li class="list-group-item">
+                      <a href="/wikis/<%= collaborators.Wiki.id %>"><%= collaborators.Wiki.title %></a>
+               </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+            <p class="lead">You are not a collaborator on any wikis!</p>
+        <% } %>
+
+    </main>
+
+  </body>
+</html>
