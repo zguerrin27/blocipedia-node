@@ -15,16 +15,16 @@ If I had more time....I would continue to style the application, and add more fu
 
 Technologies Used:
 
-HTML
-CSS
-Bootstrap
-Node.js
-Express.js
-Jasmine & Sequelize - for TDD and ORM
-Passport.js - for auth
-bycript.js - for password hashing
+HTML.
+CSS.
+Bootstrap.
+Node.js.
+Express.js.
+Jasmine & Sequelize - for TDD and ORM.
+Passport.js - for auth.
+bycript.js - for password hashing.
 sendgrid.js - API for email confirmations once a user signs up.                   				                           
 stripe.js - API for payment processing and upgrading to premium account.      
-markdown.js - for parcing markdown
+markdown.js - for parcing markdown.
 
 
