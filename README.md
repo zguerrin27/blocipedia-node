@@ -15,9 +15,9 @@ If I had more time....I would continue to style the application, and add more fu
 
 Technologies Used:
 
-HTML.
-CSS.
-Bootstrap.
+- HTML.
+- CSS.
+- Bootstrap.
 Node.js.
 Express.js.
 Jasmine & Sequelize - for TDD and ORM.
