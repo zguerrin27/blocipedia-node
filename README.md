@@ -4,13 +4,13 @@ A wiki-pedia like web application that allows users to share information!
 
 Please explore this application at: https://zguerrin27-blocipedia.herokuapp.com/
 
-You can browser public wikis as a guest, and log up for a free account. Upon doing so you can edit and create wikis. 
-There is also an option to view your public profile and sign up for a paid premium account. There is fake card data on the site if you would like to upgrade your acccount. It is on the profile page.
+You can browse public wikis as a guest, and log up for a free account. Upon doing so you can edit and create wikis. 
+There is also an option to view your public profile and sign up for a paid premium account. As a premium user you can create  edit and view privite wikis. You can also add collaborators to your private wikis...allowing standard users to view and edit them. There is fake card data on the site if you would like to upgrade your acccount. It is on the profile page.
 
 Throughout this project I learned a great deal about the Model View Controller design pattern, as well as authentication
 and validation of information. I had a really fun time working with the two public API's as well as environment variables to protect the API key. 
 
-If I had more time....I would continue to style the application, and add more functionality like the ability to upload pictures.
+If I had more time....I would continue to style the application, and add more functionality like the ability to upload pictures. I would also build out the profile page to include more information.
 
 Technologies Used:
 
