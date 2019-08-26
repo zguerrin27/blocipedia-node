@@ -4,8 +4,6 @@ A wiki-pedia like web application that allows users to share information!
 
 Please explore this application at: https://zguerrin27-blocipedia.herokuapp.com/
 
-![Screenshot](Screen Shot 2019-08-26 at 1.44.14 PM)
-
 You can browse public wikis as a guest, and log up for a free account. Upon doing so you can edit and create wikis. 
 There is also an option to view your public profile and sign up for a paid premium account. As a premium user you can create  edit and view privite wikis. You can also add collaborators to your private wikis...allowing standard users to view and edit them. There is fake card data on the site if you would like to upgrade your acccount. It is on the profile page.
 
